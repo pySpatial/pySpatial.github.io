@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="VADAR">
+    <meta name="keywords" content="VADAR, Omni3D-Bench, Program Synthesis">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Omni3D-Bench Sample Viewer</title>
+
+    <style>
+        /* Simple styling to place image and text side by side */
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px auto;
+        }
+
+        .query-box {
+            max-width: 400px;
+            background-color: #d3d3d3;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+        }
+
+        #load-button {
+            background-color: #292929;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #load-button:hover {
+            background-color: #363636;
+        }
+    </style>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/vader_heart.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">Omni3D-Bench Sample Viewer</h1>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Main Page. -->
+                                <span class="link-block">
+                                    <a href="https://glab-caltech.github.io/vadar/"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <img src="static/images/vader_heart.png" alt="Hugging Face logo"
+                                                style="height: 1.5em;">
+                                        </span>
+                                        <span>Main Page</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <!-- Image element; we'll set its src via JavaScript -->
+            <img id="question-image" style="max-width: 420px;" alt="Question Image" />
+
+            <!-- Text container for question, answer, and the load button -->
+            <div class="query-box">
+                <p><strong>Question:</strong> <span id="question-text"></span></p>
+                <p><strong>Answer:</strong> <span id="answer-text"></span></p>
+                <!-- Button right under the answer -->
+                <button id="load-button">Next Question</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let questions = [];
+
+        // Function to display a random question
+        function loadRandomQuestion() {
+            if (!questions || questions.length === 0) return;
+
+            // Pick a random question
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            const randomQuestion = questions[randomIndex];
+
+            // Set the image src
+            const img = document.getElementById('question-image');
+            img.src = 'omni3d-bench-viewer/images/' + randomQuestion.image_filename;
+
+            // Set the question and answer text
+            document.getElementById('question-text').textContent = randomQuestion.question;
+            document.getElementById('answer-text').textContent = randomQuestion.answer;
+        }
+
+        // Fetch the questions.json once, then load one question
+        fetch('omni3d-bench-viewer/omni3d-bench.json')
+            .then(response => response.json())
+            .then(data => {
+                questions = data.questions;
+                loadRandomQuestion(); // Load the first random question on page load
+            })
+            .catch(error => {
+                console.error('Error fetching questions.json:', error);
+            });
+
+        // Attach event listener to "Load Next Question" button
+        document.getElementById('load-button').addEventListener('click', loadRandomQuestion);
+    </script>
+
+</body>
+
+</html>

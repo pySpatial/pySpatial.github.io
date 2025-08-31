@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="VADAR">
+    <meta name="keywords" content="VADAR, Omni3D-Bench, Program Synthesis">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VADAR: Visual Agentic AI for Spatial Reasoning with a Dynamic API</title>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/vader_heart.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">VADAR: Visual Agentic AI for Spatial Reasoning with a
+                            Dynamic API</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://damianomarsili.github.io/" target="_blank"
+                                    rel="noopener noreferrer">Damiano Marsili*</a>,</span>
+                            <span class="author-block">
+                                <a href="https://rohunagrawal.github.io/" target="_blank"
+                                    rel="noopener noreferrer">Rohun Agrawal*</a>,</span>
+                            <span class="author-block">
+                                <a href="http://www.yisongyue.com//" target="_blank" rel="noopener noreferrer">Yisong
+                                    Yue</a>,</span>
+                            <span class="author-block">
+                                <a href="https://gkioxari.github.io/" target="_blank" rel="noopener noreferrer">Georgia
+                                    Gkioxari</a></span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Caltech</span>
+                        </div>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">*Equal Contribution</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2502.06787"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2502.06787"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/damianomarsili/VADAR"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <!-- Benchmark Link. -->
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/dmarsili/Omni3D-Bench"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg"
+                                                alt="Hugging Face logo" style="height: 1em;">
+                                        </span>
+                                        <span>Omni3D-Bench</span>
+                                    </a>
+                                </span>
+                                <!-- Dataset Viewer. -->
+                                <span class="link-block">
+                                    <a href="omni3d-bench.html"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            👀
+                                        </span>
+                                        <span>Dataset Viewer</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="content has-text-centered">
+                    <p>
+                        <b>tl;dr</b> VADAR is a new program synthesis approach for 3D spatial reasoning; LLM agents
+                        collaboratively generate a Pythonic API to solve common reasoning subproblems and tackle
+                        challenging 3D spatial reasoning queries.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--/ Abstract. -->
+        </div>
+    </section>
+
+    <section class="teaser video">
+        <div class="container is-max-desktop">
+
+            <div class="teaser-body">
+                <video id="teaser" autoplay muted loop playsinline height="80%">
+                    <source src="https://github.com/glab-caltech/vadar/raw/refs/heads/main/static/videos/vadar.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Visual reasoning is essential for embodied agents in 3D environments. While vision-language
+                            models can answer image-based questions, they struggle with 3D spatial reasoning. To address
+                            this, we propose an agentic program synthesis approach where LLM agents collaboratively
+                            generate a Pythonic API, enabling dynamic function creation for solving subproblems. Unlike
+                            static, human-defined APIs, our method adapts to diverse queries. We also introduce a new
+                            benchmark for 3D understanding, requiring multi-step grounding and inference. Our approach
+                            outperforms prior zero-shot models, demonstrating its effectiveness for 3D spatial
+                            reasoning.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Approach. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Approach</h2>
+
+                    <div class="content has-text-justified">
+                        <p>
+                            VADAR leverages an agentic program synthesis approach to produce a dynamic API that can be
+                            extended to address new queries that require novel skills. The goal of the API is to break
+                            down complex reasoning problems into simpler subproblems that can be addressed with vision
+                            specialist modules (e.g. Object Detection), and subsequently composed via program synthesis.
+                            The generated API is written in Python, and programs are tested and executed with Pythonic
+                            Agents.
+                        </p>
+                        <img src="static/images/method.png" alt="Approach" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Approach. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">DFS Method Implementation</h2>
+
+                    <div class="content has-text-justified">
+                        <p>
+                            To avoid the case that the implementation of a signature calls a method that hasn’t been
+                            implemented yet, we produce a tree of dependencies and implement our methods with a
+                            depth-first traversal.
+                        </p>
+                        <video id="dfs" autoplay muted loop playsinline height="60%">
+                            <source
+                                src="https://github.com/glab-caltech/vadar/raw/refs/heads/main/static/videos/dfs.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Omni3D-Bench. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Omni3D-Bench</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            To further assess AI capabilities for 3D understanding, we introduce a new benchmark of
+                            queries involving multiple steps of grounding and inference. Omni3D-Bench features 500
+                            challenging, <em>non-templated</em> queries with images sourced from <a
+                                href="https://github.com/facebookresearch/omni3d">Omni3D</a>, a dataset
+                            of images from diverse real-world scenes with 3D object annotations. Our queries test
+                            reasoning in 3D, as they require grounding objects in 3D and combining predicted
+                            attributes to reason about distances and dimensions in three dimensions. We show more
+                            samples from Omni3D-Bench <a href="omni3d-bench.html"> here.</a>
+                        </p>
+                        <img src="static/images/omni3d-bench.png" alt="Approach" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop is-fluid">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Results</h2>
+                    <div class="tabs is-boxed is-centered is-medium" id="tabs">
+                        <ul>
+                            <li data-tab="omni3d-bench" class="is-active"><a>Omni3D-Bench</a></li>
+                            <li data-tab="clevr"><a>CLEVR</a></li>
+                            <li data-tab="other"><a>Other</a></li>
+                        </ul>
+                    </div>
+                    <div class="columns is-centered has-text-left">
+                        <div class="column is-two-thirds content">
+                            <p>Here we show some example programs generated by VADAR and the execution output. We
+                                suggest zooming in to read the programs clearly!</p>
+                        </div>
+                    </div>
+                    <!-- Omni3D-Bench -->
+                    <div id="tabs-content">
+                        <div data-content="omni3d-bench" class="tab-content is-active content has-text-left">
+                            <div class="columns is-centered has-text-left">
+                                <div class="column is-two-thirds content">
+                                    VADAR correctly handles the non-templated, complex queries on 3D spatial
+                                    relationships present in Omni3D-Bench. Importantly, VADAR does not rely on priors of
+                                    object sizes and thus can appropriately handle queries with hypotheticals.
+                                </div>
+                            </div>
+                            <table width="100%">
+                                <tr>
+                                    <td align="center"><img src="static/images/vadar-omni3d-bench-1.png" width="100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"><img src="static/images/vadar-omni3d-bench-2.png" width="100%">
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- <img src="static/images/vadar-omni3d-bench.png" width="100%"> -->
+                        </div>
+                        <!-- CLEVR -->
+                        <div data-content="clevr" class="tab-content content">
+                            <div class="columns is-centered has-text-left">
+                                <div class="column is-two-thirds content">
+                                    VADAR is able to solve complex CLEVR queries involving multiple steps of reasoning
+                                    with <em>zero</em> supervision.
+                                </div>
+                            </div>
+                            <table width="100%">
+                                <tr>
+                                    <td align="center"><img src="static/images/vadar-clevr-1.png" width="100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"><img src="static/images/vadar-clevr-2.png" width="100%">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- GQA -->
+                        <div data-content="other" class="tab-content content">
+                            <div class="columns is-centered has-text-left">
+                                <div class="column is-two-thirds content">
+                                    We show results on GQA and the concurrent work of VSI-Bench. Unlike Omni3D-Bench and
+                                    CLEVR, GQA primarily focuses on object appearance, not 3D spatial reasoning.
+                                </div>
+                            </div>
+                            <table width="100%">
+                                <tr>
+                                    <td align="center"><img src="static/images/vadar-other-1.png" width="100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"><img src="static/images/vadar-other-2.png" width="100%">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Failure Cases. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Failure Cases</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We show examples of failure cases below. The most common errors stem from errors of the
+                            vision specialist modules (e.g. missed detections, incorrect VQA responses). Severe
+                            occlusions are particularly problematic for the vision specialists. Additionally,
+                            we find VADAR often struggles with queries that require 5 or more inference steps (e.g.
+                            <em>" There is a yellow cylinder to the right of the cube that is behind the purple block;
+                                is there a brown object in front of it?" </em>).
+                        </p>
+                        <table width="100%">
+                            <tr>
+                                <td align="center"><img src="static/images/failure-case-1.png" width="100%">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center"><img src="static/images/failure-case-2.png" width="100%">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre>
+<code>@inproceedings{Marsili_2025_CVPR,
+    author    = {Marsili, Damiano and Agrawal, Rohun and Yue, Yisong and Gkioxari, Georgia},
+    title     = {Visual Agentic AI for Spatial Reasoning with a Dynamic API},
+    booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},
+    month     = {June},
+    year      = {2025},
+    pages     = {19446-19455}
+}</code></pre>
+        </div>
+    </section>
+
+    <div id="modal" class="modal">
+        <div class="modal-background"></div>
+
+        <div class="modal-content">
+            <div id='plot-loading-div' class="box">
+                Loading...
+            </div>
+            <div id='plot-div'></div>
+        </div>
+
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+</body>
+
+</html>
